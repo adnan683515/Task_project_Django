@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class='d-flex flex-wrap justify-content-center gap-3'>
+    {% for item in data %}
+    
+        
+      
+    <div class="card col-sm-3  text-bg-warning mb-3" style="max-width: 18rem;">
+        <div class="card-header"><p><h6>Title:<i><b>{{item.Title}}</b></i></h6></p></div>
+        <div class="card-body">
+          
+          <p class="card-text">{{item.Description}}</p>
+          <h4>Assing Date:{{item.Task_Assign_Date}}</h4>
+
+         <div class='d-flex gap-2'>
+
+            <p class='col-sm-12 col-lg-4 col-md-3'>Cetagory: </p>
+            
+  
+            <div class='col-sm-12 col-lg-8 col-md-9 '>
+
+                {% for i in item.cetagory.all %}
+                <button class='btn btn-info m-1' type='button' disabled>
+                    {{i}}
+                </button>
+               
+              {% endfor %}
+
+            </div>
+
+            
+           
+
+         </div>
+
+
+         {% if not  item.is_completed %}
+          <a href="{% url 'edit' item.id %}" class='col-sm-5 col-lg-4 col-md-4'>Edit</a>
+          <a href="{% url "delete_task" item.id  %}" class='col-sm-5 col-lg-4 col-md-4'>Delete</a>
+        
+         {% else %}
+
+         <p>completed</p>
+         
+         {% endif %}
+      
+        </div>
+      </div>
+     
+    
+    {% endfor %}
+
+</div>
+
+{% endblock content %}
