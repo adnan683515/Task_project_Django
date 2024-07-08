@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from cetagory_app.forms import Cetagory_form
 # Create your views here.
 def cetagory(request):
@@ -7,6 +7,7 @@ def cetagory(request):
         if form.is_valid():
         
             form.save()
+            return redirect('show_task')
     else:
         form = Cetagory_form()
         

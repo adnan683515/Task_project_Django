@@ -8,6 +8,7 @@ def taskForm(request):
         if form.is_valid():
       
             form.save()
+            return redirect('show_task')
             
     else:
         form = task_form()
